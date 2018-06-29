@@ -1,0 +1,67 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+\begin{definition}[Category ]
+Category is a tuple $($data,structure,axioms$)$.
+\begin{itemize}
+\item \emph{data}
+	\begin{displaymath}
+		\cat \leadsto
+		\begin{cases}
+			\Obj(\cat) : 
+			    \text{\parbox{0.65\textwidth}{ collection of items called \emph{objects of $\cat$}}}
+			\\
+			\biggr\lbrace \hom_{\cat} (A,B) \biggr\rbrace_{A,B \in \Obj(\cat)} : 
+				\text{\parbox{0.45\textwidth}{parametrized family of collections of items  called \emph{morphisms} or \emph{arrows}}}
+		\end{cases}
+	\end{displaymath}
+
+\item Structure:
+	(Composition of arrows)
+	\begin{displaymath}
+		\circ : \hom_{\cat}(A,B) \times \hom_{\cat}(B,C) \rightarrow \hom_{\cat} (A,C)
+	\end{displaymath}
+	Diagrammatically \footnote{This is more properly a diagrammatic definition of  $\commute$}: 
+	$\forall \bulk \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \commute}$\\
+	\begin{tikzcd}
+		A \arrow[d, "f"] \arrow[dd, bend left=60,red, "gf\textcolor{blue}{ = f \circ g}"] 	& \\
+		B \arrow[d, "g"] \arrow[r, phantom,"\commute",, very near start,blue] 	& \phantom.\\
+		C 																& 
+	\end{tikzcd}
+\item Axioms:
+	\begin{itemize}
+		\item \emph{Identity axiom}:
+			$\forall \bulk \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \commute}$\\
+			\begin{tikzcd}
+				A \arrow[rr, "\id_A",red] \arrow[rrdd, "f", bend right]& & A \arrow[dd, "f"] \arrow[rrdd, "f", bend left] & & \\
+				 & |[blue]|\commute & & |[blue]|\commute & \\
+				 & &  B \arrow[rr, "\id_B",red] & & B
+			\end{tikzcd}
+		\item \emph{associativity axiom}
+			$\forall \bulk \textcolor{green}{h (gf) = (hg) f}$			\\
+			\begin{tikzcd}
+				A \arrow[r,"f"] \arrow[rr,"gf",bend left=40, blue] \arrow[rrr,"h(gf)",bend left=80, green] \arrow[rrr,"(hg)f",bend right=80, green] &
+				B \arrow[r,"g"] \arrow[rr,"hg",bend right=40, blue] &
+				C \arrow[r,"h"] &				
+				D  
+			\end{tikzcd}
+	\end{itemize}
+	
+\end{itemize}
+\end{definition}
+\begin{notation}
+	$\Arr(\cat) = \bigcup\limits_{A,B \in \Obj(\cat)}\hom_{\cat} (A,B) $
+\end{notation}
+
+\end{document}

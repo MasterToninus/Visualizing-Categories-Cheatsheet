@@ -1,0 +1,195 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+\def\trilim{
+	\tikz[baseline=.1ex]{
+		\fill (0,1.75ex) coordinate (A);
+		\fill (2.5ex,1.75ex) coordinate (B);
+		\fill (1.25ex,-0.5ex) coordinate (C);	
+		\draw[green] (1.25ex,1ex) node {$\commute$};
+		\draw[black] (A) -- (B);
+		\draw[green] (B) -- (C);
+		\draw[red] (C) -- (A);
+	}
+}
+
+\def\tricolim{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (2.5ex,-0.5ex) coordinate (B);
+		\fill (1.25ex,1.75ex) coordinate (C);
+		\draw[green] (1.25ex,0.25ex) node {$\commute$};
+		\draw[black] (A) -- (B);
+		\draw[green] (B) -- (C);
+		\draw[red] (C) -- (A);
+	}
+}
+
+
+\def\TriLimit{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (0,2ex) coordinate (B);
+		\fill (-2.25ex,0.75ex) coordinate (C);
+		\draw[orange] (-0.75ex,0.75ex) node {$\commute$};
+		\draw[orange] (A) -- (B);
+		\draw[red] (B) -- (C) ;
+		\draw[blue] (C) -- (A) ;
+	}
+}
+
+
+
+\begin{document}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+
+
+Let's begin from the dry abstract nonsense:
+\begin{definition}[Diagram on $\cat$]
+	Functor $D: \cat[I] \rightarrow \cat$ from a small category $\cat[I]$ to $\cat[C]$.
+\end{definition}
+Basically it is  a graph composed of objects and arrows in $\cat$.
+
+% first column
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[Cone over diagram $D$]
+		\begin{displaymath}
+		 (
+		 \tikz[baseline]{
+		 			\node[fill=blue!20,anchor=base] (t1)
+		            {$ V$};
+		        } 
+			,
+			 \tikz[baseline]{
+		            \node[fill=blue!20,anchor=base] (t2)
+		            {$ \{\nu_i:V \rightarrow D_i\}_{i\in \cat[I]} $};
+			}
+		)
+		\end{displaymath}
+		\tikzstyle{na} = [baseline=-.5ex]
+		\begin{itemize}
+		    \item \tikz[na] \node[coordinate] (n1) {};
+		    	Object $\in \cat$
+		    \item Family of morphisms of $\cat$
+		        \tikz[na]\node [coordinate] (n2) {};
+		\end{itemize}
+		% Now it's time to draw some edges between the global nodes. Note that we have to apply the 'overlay' style.
+		\begin{tikzpicture}[overlay]
+		        \path[->] (n1) edge [bend left] (t1);
+		        \path[->] (n2) edge [bend right] (t2);
+		        %\path[->] (n3) edge [out=0, in=-90] (t3);
+		\end{tikzpicture}
+		\St
+		
+		$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$
+		\begin{tikzcd}
+			& \textcolor{red}{V} \ar[dl,red,"\nu_i"'] \ar[d,phantom,blue,"\commute"] \ar[dr,red,"\nu_j"]& \\
+			D_i \ar[rr,"D(f)"']& \phantom. & D_j 
+		\end{tikzcd}
+		I.e. it is a n.t. $ \nu : \Delta_V \xrightarrow{\cdot} \cat[D]$
+		\begin{tikzcd}
+			i \ar[d,"f"] & & \textcolor{red}{V} \ar[d,equal,red] \ar[r,red,"\nu_i"] \ar[dr,phantom,blue,"\commute"]& D_i \ar[d,"D(f)"]\\
+			j			   & & \textcolor{red}{V} \ar[r,red,"\nu_j"'] & D_j
+		\end{tikzcd}
+	\end{definition}
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[CoCone over diagram $D$]
+		\begin{displaymath}
+		 (
+		 \tikz[baseline]{
+		 			\node[fill=blue!20,anchor=base] (t1)
+		            {$ W$};
+		        } 
+			,
+			 \tikz[baseline]{
+		            \node[fill=blue!20,anchor=base] (t2)
+		            {$ \{\omega_i:D_i \rightarrow W\}_{i\in \cat[I]} $};
+			}
+		)
+		\end{displaymath}
+		\tikzstyle{na} = [baseline=-.5ex]
+		\begin{itemize}
+		    \item \tikz[na] \node[coordinate] (n1) {};
+		    	Object $\in \cat$
+		    \item Family of morphisms of $\cat$
+		        \tikz[na]\node [coordinate] (n2) {};
+		\end{itemize}
+		\begin{tikzpicture}[overlay]
+		        \path[->] (n1) edge [bend left] (t1);
+		        \path[->] (n2) edge [bend right] (t2);
+		        %\path[->] (n3) edge [out=0, in=-90] (t3);
+		\end{tikzpicture}
+		\St
+		
+		$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$
+		\begin{tikzcd}
+			D_i \ar[rr,"D(f)"] \ar[dr,red,"\omega_i"']& \phantom. & D_j \ar[dl,red,"\omega_j"]\\
+			& \textcolor{red}{W}  \ar[u,phantom,blue,"\commute"] & 
+		\end{tikzcd}
+		I.e. it is a n.t. $ \omega : \cat[D] \xrightarrow{\cdot} \Delta_W$
+		\begin{tikzcd}
+			i \ar[d,"f"] & & D_i \ar[d,"D(f)"'] \ar[r,red,"\omega_i"] \ar[dr,phantom,blue,"\commute"]& \textcolor{red}{W}\ar[d,equal,red] \\
+			j			   & & D_j \ar[r,red,"\omega_j"'] & \textcolor{red}{W}
+		\end{tikzcd}
+	\end{definition}
+\end{minipage}
+	\begin{center}
+		\begin{tikzcd}[row sep= 5pt]%small]
+			e.g.:& &   \textcolor{green}{V} \ar[ddl, green, bend right]\ar[dd, green] \ar[dr, green, bend left] \ar[dddr, green,bend left]  &   & 
+				\textcolor{green}{\textrm{\small cone}}    \\
+			& &		   & D_3  & \\
+			& D_1 \ar[r] & D_2 \ar[ru] \ar[rd]& \phantom. & \textrm{\small diagram}\\ 
+			& &		   & D_4 \\
+			& &   \textcolor{red}{W} \ar[uul, red, bend left]\ar[uu, red] \ar[ur, red, bend right] \ar[uuur, red, bend right]  &   &
+				\textcolor{red}{\textrm{\small co-cone}}    
+		\end{tikzcd}
+	\end{center}
+
+% first column
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[Limit of diagram $D$]
+		It is an Universal cone over $D$.
+		$$\textcolor{red}{cone \bulk} s.t. \textcolor{blue}{\forall cone \bulk} \quad \textcolor{orange}{\exists! \bulk} \St \TriLimit$$	
+		\begin{tikzcd}[row sep= small]
+		i \ar[dd,"f"] & & D_i  \ar[dd,"D(f)"']& \\
+		 & & \phantom. \ar[r,phantom,red,"\commute"] \ar[rdd,phantom,blue,"\commute"]& \textcolor{red}{V} \ar[lu,red] \ar[ld,red] \\
+		j & & D_j & \phantom. \ar[l,phantom,near start, orange,"\commute"]\\
+		& & & \textcolor{blue}{V'} \ar[uuul,blue] \ar[ul,blue] \ar[uu,orange,"\exists!"']
+		\end{tikzcd}		
+		
+	\end{definition}
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[Co-Limit of diagram $D$]
+		It is an Universal co-cone over $D$.
+		$$\textcolor{red}{cocone \bulk} s.t. \textcolor{blue}{\forall cone \bulk} \quad \textcolor{orange}{\exists! \bulk} \St \TriLimit$$	
+		\begin{tikzcd}[row sep= small]
+		i \ar[dd,"f"] & & D_i \ar[rd,red] \ar[rddd,blue] \ar[dd,"D(f)"']& \\
+		 & & \phantom. \ar[r,phantom,red,"\commute"] \ar[rdd,phantom,blue,"\commute"] & \textcolor{red}{W} \ar[dd,orange,"\exists!"] \\
+		j & & D_j \ar[ru,red]  \ar[rd,blue]& \phantom. \ar[l,phantom,near start, orange,"\commute"]\\
+		& & & \textcolor{blue}{W'}
+		\end{tikzcd}	
+
+	\end{definition}
+\end{minipage}
+\end{document}

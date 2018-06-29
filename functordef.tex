@@ -1,0 +1,57 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+
+\begin{definition}[Functor]
+	A functor $F: \cat[C] \rightarrow \cat[D] $ is a pair of correpondences 
+	\begin{displaymath}
+		F: \Obj(\cat[C]) \rightarrow \Obj(\cat[D])
+	\end{displaymath}
+	\begin{displaymath}
+		F_{A,\, B} : \hom_{\cat[C]}(A,B) \rightarrow \hom_{\cat[D]}(F(A),F(B))		\qquad \forall A,B \in \Obj(\cat[C]) 
+	\end{displaymath}
+	
+	\begin{center}
+		\begin{tikzcd}
+			A \arrow[d,"f"] & & F(A) \arrow[d,"F(f)",blue, shift left=1ex] \\
+			B								& & F(B) \arrow[u,"F(f)",green, shift left=1ex]
+		\end{tikzcd}
+		(\textcolor{green}{controvariant}) (\textcolor{blue}{covariant})	
+	\end{center}
+
+	
+	\St
+	\begin{itemize}
+		\item 
+			\parbox{0.35\textwidth}{		
+				\emph{identity axiom}
+				$$\forall \bulk  \textcolor{blue}{\Rightarrow \commute}$$
+			}
+			\begin{tikzcd}
+				A \arrow[d,"\id_A"] & & F(A)\arrow[d, phantom,"\commute",,blue]  \arrow[d, bend right=60, "F(\id_A)"'] \arrow[d, bend left=60, "\id_{F(A)}"] \\
+				A & & F(A)
+			\end{tikzcd}
+		\item 
+			\parbox{0.35\textwidth}{
+				\emph{associativity axiom}
+				$$\forall \bulk  \textcolor{blue}{\Rightarrow  \commute}$$
+			}
+			\begin{tikzcd}
+		A \arrow[d, "f"] \arrow[dd, bend right=60, "gf "] 	& & F(A) \arrow[d, "F(f)"] \arrow[dd, bend left=60, "F(gf) "] &	 \\
+		B \arrow[d, "g"] & &  F(B) \arrow[d, "F(g)"] \arrow[r, phantom,"\commute",, very near start,blue]  & \phantom.\\
+		C 	& & F(C)	&
+			\end{tikzcd}
+	\end{itemize}
+\end{definition}
+\end{document}

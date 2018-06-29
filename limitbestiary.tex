@@ -1,0 +1,119 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+\usepackage{pdflscape}
+
+
+
+\begin{document}
+%
+The best way to grasp the meaning (...) to understand what is a limit it is through examples. The model category is $\cat[Set]$ which turn out to be complete and co-complete.
+
+\begin{definition}[Terminal Object]
+	Is a limit on the empty diagram.\\
+	$\textcolor{red}{T\in \Obj(\cat)} \St 
+	 \textcolor{blue}{\forall X \in \Obj	(\cat)}
+	 \textcolor{green}{\exists! X\rightarrow T}$\\
+	\begin{tikzcd}
+		\textcolor{blue}{X} \ar[d,green] \\
+		\textcolor{red}{T} 
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Initial Object]
+	\begin{tikzcd}
+		\textcolor{red}{I} \ar[d,green] \\
+		\textcolor{blue}{X} 
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Product]
+	\begin{tikzcd}
+		&\textcolor{blue}{C} \ar[ddl, bend right, blue] \ar[ddr, bend left, blue] \ar[d,green] 
+		\ar[ddl,phantom,green, "\commute"] \ar[ddr,phantom,green, "\commute"]& \\
+		&\textcolor{red}{A \times B} \ar[dl,red] \ar[dr,red]& \\
+		A & & B \\
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Co-Product]
+	\begin{tikzcd}
+		A \ar[dr,red] \ar[ddr, bend right, blue] & & B\ar[dl,red] \ar[ddl, bend left, blue]\\
+		&\textcolor{red}{A \times B}  \ar[d,green] & \\
+		&\textcolor{blue}{C} \ar[uul,phantom,green, "\commute"] \ar[uur,phantom,green, "\commute"]& 
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Equalizer]
+	\begin{tikzcd}
+		 & & B \ar[dd,equal] \\
+		\textcolor{red} E \ar[r,red,"e"] \ar[rru,red, bend left] \ar[rrd,red, bend right] \ar[rrd,phantom,red, "\commute"] \ar[rru,phantom,red, "\commute"]& 
+		A \ar[ur,"f"] \ar[dr,"g"'] \ar[r,phantom, "\commute"]& \phantom. \\
+		 & & B 
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Co-Equalizer]
+	\begin{tikzcd}
+		A   \ar[dd,equal] \ar[rd,"f"] \ar[rrd,red, bend left] \ar[rrd,phantom,red, "\commute"]& & \\
+		\phantom. \ar[r,phantom, "\commute"] & B \ar[r,red,"q"] & \textcolor{red} Q \\
+		B \ar[ru,"g"'] \ar[rru,red, bend right] \ar[rru,phantom,red, "\commute"]& & \\
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Pull-Back]
+	\begin{tikzcd}
+		\textcolor{green} U \ar[rd,orange,"!"]  \ar[rdd,green,bend right] \ar[rrd,green,bend left]& & \\
+		& \textcolor{red} S \ar[rd,red,phantom,"\commute"] \ar[r,red] \ar[d,red]  \arrow[dr, phantom, "\ulcorner", very near start]
+& A \ar[d] \\
+		& B \ar[r] & C
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Push-Out]
+	\begin{tikzcd}
+		C \ar[r] \ar[d] \ar[rd,red,phantom,"\commute"]& A \ar[d,red] \ar[rdd,green,bend left]& \\
+		B  \ar[r,red] \ar[rrd,green,bend right] & \textcolor{red}O \arrow[ul, phantom, "\ulcorner", very near start] \ar[rd,orange,"!"] & \\
+		& & \textcolor{green} U		
+	%	 U   \ar[rdd,green,bend right] \ar[rrd,green,bend left]& & \\
+	%	& } S  \arrow[dr, phantom, "\ulcorner", very near start] & A \ar[d] \\
+	%	& B \ar[r] & C
+	\end{tikzcd}
+\end{definition}
+%
+So, a limit is a concept pertaing to a specific configuration of objects and arrows (the image of the diagram $D$ in $\cat$).
+\\
+We reserve a special name for categories such that limit exists for all diagram of a certain shape regardless of the specificity of vertex and arrows (i.e. depending only on the shape of the diagrams).
+%
+\begin{notation}
+	\begin{displaymath}
+		D: \cat[I] \rightarrow	\cat
+	\end{displaymath}
+	A diagram is \emph{finite} if $\Obj(\cat[I])$ is a discrete set.
+	\\
+	Limits on a finite diagram are called \emph{finite limits}.
+\end{notation}
+%
+\begin{definition}[(finitely) (Co-)Complete Category]
+	$\cat$ \St all (finite) (Co-)Limit exists.
+\end{definition}
+%
+\begin{proposition}
+T.f.s.a.e.:
+\begin{itemize}
+	\item $\cat$ has all (finite) limits / (finite) colimits
+	\item $\cat$ has all (finite) products and equalizers / (finite) co-products and co-equalizers
+	\item $cat$ has all (binary) pullbacks and terminal object / (binary) pushout and initial object
+\end{itemize}
+
+\end{proposition}
+
+\end{document}

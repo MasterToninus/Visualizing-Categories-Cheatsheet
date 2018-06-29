@@ -1,0 +1,63 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page from my handwritten notes.)
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+
+\begin{definition}[Essentially Surjective Functor]
+	\parbox{0.35\textwidth}{
+		$$\forall Y\in \cat[D]  \textcolor{blue}{\exists X \in \cat[C], \bulk}$$
+	}
+	\begin{tikzcd}
+		\color{blue} X & & Y \\
+		& & \color{blue} F(X) \arrow[u,"\simeq",blue]
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Iso Functor]
+	\parbox{0.35\textwidth}{
+		 $$\textrm{functor} \bulk : \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \bulk}$$
+	}
+		\begin{tikzcd}
+		& & \color{blue} \commute & \\
+		\cat[C] \arrow[r, "F "] \arrow[rr, " \id_{\cat[C]}", bend right = 60] \arrow[rr, "F \cdot G"', bend right = 80,blue, looseness = 1.5]& 
+		\cat[D] \arrow[r, "G", red] \arrow[rr, "\id_{\cat[D]}"', bend left = 60] \arrow[rr, "G \cdot F", bend left = 80,blue, looseness = 1.5]& 
+		\cat[C] \arrow[r, "F "]& 
+		\cat[D] \\
+		& \color{blue} \commute & & 
+	\end{tikzcd}
+	\footnote{$\color{red}G$ is called \emph{inverse functor of $F$}}
+
+\end{definition}
+%
+\begin{definition}[Equivalence]
+	\parbox{0.35\textwidth}{
+		 $$\textrm{functor} \bulk : \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \exists \bulk}$$
+	}
+		\begin{tikzcd}
+		\cat[C] \arrow[r, "F "] \arrow[rr, " \id_{\cat[C]}"{name=D1, above}, bend right = 60] \arrow[rr, bend right = 80,blue, looseness = 1.5, "F \cdot G"'{name=U1, below}]& 
+		\cat[D] \arrow[r, "G", red] \arrow[rr, "\id_{\cat[D]}"'{name=U2, below}, bend left = 60] \arrow[rr, "G \cdot F"{name=D2}, bend left = 80,blue, looseness = 1.5]& 
+		\cat[C] \arrow[r, "F "]& 
+		\cat[D] 
+		\arrow[Leftrightarrow,blue,"\epsilon", from=U1, to=D1]
+		\arrow[Leftrightarrow,blue,"\eta", from=U2, to=D2]
+	\end{tikzcd}
+	\footnote{$\color{red}G$ is called \emph{Quasi inverse functor of $F$}}
+
+\end{definition}
+
+\begin{proposition}
+	Given F a functor
+	$$ \textrm{Equivalence} \Leftrightarrow \textrm{Fully functor and essentially surjective}$$
+\end{proposition}
+
+\end{document}

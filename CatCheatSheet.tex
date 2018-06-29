@@ -1,0 +1,132 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+
+\documentclass[a4paper,12pt,fleqn]{scrartcl}  %Per La Stampa
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\usepackage{amsmath}
+
+\usepackage[subpreambles=true]{standalone}
+\usepackage{commath}
+
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{standalone}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+
+
+\usepackage[toc,page]{appendix}
+
+\usepackage{epigraph} %funny quotes
+
+
+%%__________________________________
+%% To transform in a package.
+%%__________________________________
+%%
+	\newcommand{\catdef}[3]{
+		\begin{displaymath}
+		#1 \leadsto
+		\begin{cases}
+			Obj = #2\\
+			Arr = #3
+		\end{cases}
+		\end{displaymath}
+	}
+	\newcommand{\smalltikzcd}[2]{
+		\begin{tikzpicture}[baseline= (a).base]
+			\node[scale=#1] (a) at (0,0){
+				\begin{tikzcd} #2 \end{tikzcd}
+			};
+		\end{tikzpicture}
+	}
+
+
+	\newcommand{\id}{\textrm{id}}
+
+%Diagrammatic
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{fdsymbol}
+	% bulk of arrows and objects
+	\newcommand{\bulk}{\blacklozenge}
+	% such that
+	\newcommand{\St}{\textrm{s.t.}}
+	% id est
+	\newcommand{\ie}{\textrm{\emph{i.e.}}}
+	% commuting
+	\newcommand{\commute}{\circledequal}%\circlearrowleft
+
+
+
+\begin{document} 
+\begin{abstract}
+	The preliminary material for my talk on the category of diffeological spaces.
+\end{abstract}
+
+
+\begin{appendices}
+\epigraph{Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams and arrows.}{Saunders Mac Lane}
+\epigraph{Poetry says more with less words.\\
+Mathematics too.}{Gabriele Lolli}
+
+%------------------------------------------------------------------------------------BASIC ---------------------------------
+\section{Basic definitions}
+	\input{catdef}
+We can not delve here on the foundational issues related to this definitions. Let us simple look at it a triple composed of \emph{data}, \emph{structure}, \emph{axiom}.
+\\
+One of these problem is the problem of "size". We use the term "collections" when we want to remain vague about the axiomatic framework of sets considered.
+We use "mapping" when we want to consider correspondences between collections.
+\\
+Words like "set" and "function" are reserved to objects and morhpisms in the set category.
+
+
+\paragraph{How to compare cat?}
+	\input{functordef}
+
+	\subparagraph{Basic Classification:}
+	\input{basicfunctorclassification}
+
+\subparagraph{How to compare Functors?}
+	\input{naturaltransfdef}
+
+%------------------------------------------------------------------------------------Limits ---------------------------------
+\newpage
+\section{Limits}
+	\input{limitdef}
+	The best way to grasp the meaning (...) to understand what is a limit it is through examples. The model category is $\cat[Set]$ which turn out to be complete and co-complete.
+	\input{limitbestiary}
+
+\newpage
+\section{Classification of Morphisms}
+	In any $\cat$ there is a basic classification of morphisms $f: C \rightarrow D$.\\
+	
+
+	\input{basicmorphismclassification}
+
+\newpage
+\section{Subobjects}
+
+\newpage
+\section{Cartesian Closedness}
+
+
+
+\section{Eternal TODO}
+	\input{slicecatdef}
+	
+	
+
+
+
+\end{appendices}
+			\nocite{*}
+			\bibliographystyle{plain}
+			\bibliography{biblio}
+
+\end{document}

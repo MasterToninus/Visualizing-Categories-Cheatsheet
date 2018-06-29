@@ -1,0 +1,48 @@
+%%__________________________________
+%% Provisional diagrammatic cat visualization tools.
+%%__________________________________
+%%
+%\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{cat-visualization}[2018/02/26 Custom Package]
+
+%Definizione di categoria alla Mantovani, con una struttura dati con attributi "oggetti" e "frecce"
+	\providecommand{\catdef}[3]{
+		\begin{displaymath}
+		#1 \leadsto
+		\begin{cases}
+			Obj = #2\\
+			Arr = #3
+		\end{cases}
+		\end{displaymath}
+	}
+	\providecommand{\id}{\textrm{id}}
+
+%Diagrammatic
+	\RequirePackage{tikz-cd}
+	\RequirePackage{xcolor}
+	\RequirePackage{fdsymbol}
+	% bulk of arrows and objects
+	\providecommand{\bulk}{\blacklozenge}
+	% such that
+	\providecommand{\St}{\textrm{s.t.}}
+	% id est
+	\providecommand{\ie}{\textrm{\emph{i.e.}}}
+	% commuting
+	\providecommand{\commute}{\circledequal}%\circlearrowleft
+
+	\providecommand{\smalltikzcd}[2]{
+		\begin{tikzpicture}[baseline= (a).base]
+			\node[scale=#1] (a) at (0,0){
+				%inserire qui il codice tikz
+				#2
+			};
+		\end{tikzpicture}
+	}
+
+\ProcessOptions\relax
+
+
+
+
+
+\endinput

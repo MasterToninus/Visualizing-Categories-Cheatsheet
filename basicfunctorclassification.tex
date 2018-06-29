@@ -1,0 +1,72 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page from my handwritten notes.)
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+
+\begin{definition}[Faithful Functor]
+	\parbox{0.35\textwidth}{
+		$F_{A,\; B} $ is injective. \ie : 
+		$$\forall \bulk  \textcolor{blue}{s.t. \bulk} \textcolor{red}{\Rightarrow \bulk}$$
+	}
+	\begin{tikzcd}
+		A \arrow[d, bend right=60, "f "'] \arrow[d, bend left=60, "g "] \arrow[d, phantom,"\commute",,red] & & 
+		F(A) \arrow[d, bend right=60, "F(f) "'] \arrow[d, bend left=60, "F(g) "] \arrow[d, phantom,"\commute",,blue] \\
+		B & & F(B)
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Full Functor]
+	\parbox{0.35\textwidth}{
+		$F_{A,\; B} $ is surjective. \ie :
+		$$\forall \bulk  \textcolor{blue}{\exists \bulk} \textcolor{red}{\St \bulk}$$
+	}
+	\begin{tikzcd}
+		A \arrow[d, "f ",blue]  & &  
+		F(A) \arrow[d, bend right=60, "F(f) "', blue] \arrow[d, bend left=60, "\eta "] \arrow[d, phantom,"\commute",,red] \\
+		B & & F(B)
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Costant Functor]
+	$ \bigtriangleup_u : \cat \rightarrow \cat[D] $ s.t.
+	\begin{tikzcd}
+		A \arrow[d, "f "]  & &  
+		\bigtriangleup_u(A) = u \arrow[d, "\bigtriangleup_u(f) = \id_u"]  \\
+		B & & \bigtriangleup_u(A) = u
+	\end{tikzcd}
+\end{definition}
+%
+\begin{definition}[Iso-reflecting]
+	\parbox{0.35\textwidth}{
+		$$\forall \bulk  \textcolor{blue}{\Rightarrow \commute}$$
+	}
+
+	\begin{tikzcd}
+		A \arrow[d, "f ", bend right=60]  & & F(A) \arrow[d, "F(f) "', bend right=60] \arrow[drr, phantom,"\commute",blue] & & \\
+		B \arrow[u, "f^{-1}", bend right=60] & & F(B) \arrow[u, "F(f^{-1})"', bend right=60] \arrow[u, "F(f)^{-1}"', bend right=90, blue, looseness=5] & & \phantom{A}
+	\end{tikzcd}
+	\\ or \\
+	\begin{tikzcd}
+		A \arrow[d, "f "']   \arrow[dd, "id_A"', bend right=60]& & F(A) \arrow[d, "F(f) "'] \arrow[dd, "id_{F(A)} ", bend left=60]  & \\
+		B \arrow[d, "f^{-1}"'] & & F(B)  \arrow[d, "F(f^{-1}) "'] \arrow[r, phantom,"\commute",blue, near start]&\phantom{A}\\
+		A & & F(A) &
+	\end{tikzcd}
+	
+\end{definition}
+
+\begin{proposition}
+	Given F a functor
+	$$ \textrm{Fully Faithfull} \Leftrightarrow \textrm{Iso-reflecting}$$
+\end{proposition}
+
+\end{document}

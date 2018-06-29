@@ -1,0 +1,39 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+
+\begin{definition}[Natural transformation]
+	\begin{tikzcd}
+		\mu: F \xrightarrow[]{\cdot} G & = &
+		\cat[C] \arrow[r, bend left=50, "F"{name=U, above}]
+		\arrow[r, bend right=50, "G"{name=D, below}]
+		& \cat[D]
+		\arrow[shorten <=1pt,shorten >=1pt,Rightarrow, from=U, to=D, "\mu"]
+	\end{tikzcd}
+	\\
+	Is a collection of morphisms 
+	\begin{displaymath}
+		\left\lbrace \mu_X : F(X) \rightarrow G(X) \: \vert \: X \in \Obj(\cat) \right\rbrace \subset \Arr(\cat[D])
+	\end{displaymath} 
+	S.t. \\
+	$\forall \bulk  \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \bulk}$\\
+	\begin{tikzcd}
+		X \arrow[d, "f "]  & & 
+		F(X) \arrow[d, "F(f) "'] \arrow[r, "\eta_X ", red ] \arrow[dr,"\commute",phantom,blue] & G(X) \arrow[d, "G(f) "] \\
+		Y & & F(Y)\arrow[r, "\eta_Y ", red ] & G(Y)
+	\end{tikzcd}
+	(naturality)
+\end{definition}
+
+\end{document}

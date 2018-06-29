@@ -1,0 +1,30 @@
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+\begin{document}
+	%Category
+	\begin{displaymath}
+		\frac{\cat}{B}
+	\end{displaymath}
+	% Objects
+	\begin{displaymath}
+		Obj = \{ \pi: E \rightarrow M \} = \{ \pi \in \Arr(\cat) \vert \cod(\pi)=B\}
+	\end{displaymath}
+	% Arrows
+	\begin{displaymath}
+	 \hom_{\dfrac{\cat}{B}}(\pi_1,\pi_2) = \left\{\phi \in \hom_{\cat}(\cod(\pi_1),\cod(\pi_2)) \vert 
+		\begin{tikzpicture}[baseline= (a).base]
+			\node[scale=.75] (a) at (0,0){
+				\begin{tikzcd} E \ar[rr,"\phi"] \ar[dr,"\pi_1"] &  \phantom.\arrow[d, phantom,"\commute"] & E' \ar[dl,"\pi_2"] \\ & M & \end{tikzcd}
+			};
+		\end{tikzpicture}
+	\right\}
+	\end{displaymath}
+
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[preview]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usetikzlibrary{arrows,shapes}
+
+\usepackage{./visualcat}
+
+\begin{document}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+
+% By default all math in TikZ nodes are set in inline mode. Change this to
+% displaystyle so that we don't get small fractions.
+\everymath{\displaystyle}
+
+\begin{displaymath}
+ (,
+ \tikz[baseline]{
+            \node[fill=blue!20,anchor=base] (t1)
+            {$ V1$};
+        } 
+	,
+	 \tikz[baseline]{
+            \node[fill=blue!20,anchor=base] (t2)
+            {$ V2$};
+	}
+	,
+	 \tikz[baseline]{
+            \node[fill=blue!20,anchor=base] (t3)
+            {$ V3$};
+	}	 
+)
+\end{displaymath}
+\tikzstyle{na} = [baseline=-.5ex]
+\begin{itemize}
+    \item Termine 1
+        \tikz[na] \node[coordinate] (n1) {};
+    \item Termine 1
+        \tikz[na]\node [coordinate] (n2) {};
+    \item Termine 1
+        \tikz[na]\node [coordinate] (n3) {};
+\end{itemize}
+
+% Now it's time to draw some edges between the global nodes. Note that we
+% have to apply the 'overlay' style.
+\begin{tikzpicture}[overlay]
+        \path[->] (n1) edge [bend left] (t1);
+        \path[->] (n2) edge [bend right] (t2);
+        \path[->] (n3) edge [out=0, in=-90] (t3);
+\end{tikzpicture}
+
+\end{document}

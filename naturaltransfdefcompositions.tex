@@ -1,0 +1,60 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+\begin{definition}[Vertical composition]
+	\begin{tikzcd}
+		\cat[C] 
+			\arrow[rrr, bend left=60, "F"] 
+			\arrow[rrr, phantom, bend left=60, ""{name=U}] 
+			\arrow[rrr, bend right=60, "H"]
+			\arrow[rrr, phantom, bend right=60, ""'{name=D,below}]		
+		 	\arrow[rrr, "G"]
+			\arrow[rrr, ""{name=C}]		 	
+		 	& & & \cat[D]
+		\arrow[Rightarrow,blue,"\alpha"', from=U, to=C,shift right=2ex]
+		\arrow[Rightarrow,blue,"\beta"', from=C, to=D,shift right=2ex]
+		\arrow[Rightarrow,red,"\beta \circ \alpha"'{below right}, from=U, to=D,shift left=2ex]
+	\end{tikzcd}
+	
+	\begin{tikzcd}
+		x \ar[d,"s"] & & F(x) \ar[rr,bend left = 30,red,"(\beta \circ \alpha)_x =\beta_x \alpha_x"] \ar[r,"\alpha_x"] \ar[d,"F(s)"] \ar[dr,phantom,"\commute"]& G(x) \ar[r,"\beta_x"] \ar[d,"G(s)"] \ar[dr,phantom,"\commute"]& H(x) \ar[d,"H(s)"] \\
+		y & & F(y) \ar[rr,bend right = 30,red,"(\beta \circ \alpha)_y = \beta_y \alpha_y"] \ar[r,"\alpha_y"] & G(y) \ar[r,"\beta_y"] & H(y) 
+	\end{tikzcd}
+\end{definition}
+
+\begin{definition}[Horizontal composition]
+	\begin{tikzcd}
+		\cat[C] 
+			\arrow[rr, bend left=30, "F"{name=U1}] 
+			\arrow[rr, bend right=30, "G"'{name=D1}]
+			\arrow[rrrr, bend left=60, "F' \circ F"{name=U}]
+			\arrow[rrrr, bend right=60, "G' \circ G"{name=D}] 		 	
+		 & &\cat[D]
+			\arrow[rr, bend left=30, "F'"{name=U2}] 
+			\arrow[rr, bend right=30, "G'"'{name=D2}]		 
+		 & &\cat[E]
+		\arrow[Rightarrow,"\alpha"', from=U1, to=D1]
+		\arrow[Rightarrow,"\beta", from=U2, to=D2]
+		\arrow[Rightarrow,red,"\beta \ast \alpha"'{above left}, from=U, to=D,shift left=3ex]
+	\end{tikzcd}
+	
+	\begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
+		x \ar[dd,"s"] & & F(x) \ar[rr,"\alpha_x"] \ar[dd,"F(s)"] \ar[ddrr,phantom,"\commute"]& & G(x) \ar[dd,"G(s)"] \\
+		& & & & \\
+		y & & F(y) \ar[rr,"\alpha_y"] & & G(y) 
+	\end{tikzcd}
+
+\end{definition}
+
+\end{document}

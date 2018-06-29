@@ -1,0 +1,163 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+\usepackage{tikz}
+\def\tria{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (0,2ex) coordinate (B);
+		\fill (2.25ex,0.75ex) coordinate (C);
+		\draw[green] (0.75ex,0.75ex) node {$\commute$};
+		\draw[blue] (A) -- (B);
+		\draw[green] (A) -- (C) -- (B);
+	}
+}
+
+\def\trib{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (0,2ex) coordinate (B);
+		\fill (2.25ex,0.75ex) coordinate (C);
+		\draw[blue] (0.75ex,0.75ex) node {$\commute$};
+		\draw[blue] (A) -- (B);
+		\draw[blue] (A) -- (C) -- (B);
+	}
+}
+
+\def\cotria{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (0,2ex) coordinate (B);
+		\fill (-2.25ex,0.75ex) coordinate (C);
+		\draw[green] (-0.75ex,0.75ex) node {$\commute$};
+		\draw[blue] (A) -- (B);
+		\draw[green] (A) -- (C) -- (B);
+	}
+}
+
+\def\cotrib{
+	\tikz[baseline=.1ex]{
+		\fill (0,-0.5ex) coordinate (A);
+		\fill (0,2ex) coordinate (B);
+		\fill (-2.25ex,0.75ex) coordinate (C);
+		\draw[blue] (-0.75ex,0.75ex) node {$\commute$};
+		\draw[blue] (A) -- (B);
+		\draw[blue] (A) -- (C) -- (B);
+	}
+}
+
+\begin{document} 
+% first column
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[Monomorphism (mono or monic arrow)]
+		\emph{"left cancellative arrow"}
+		$\textcolor{red}{\bulk} s.t. \textcolor{blue}{\forall \bulk} \quad \tria \Rightarrow \trib$\\
+		%
+		\begin{tikzcd}
+			 \textcolor{blue}{B} \ar[dd,blue,equal] \ar[dr,blue,"g_1"] \arrow[rrd, bend left=30, "fg_1",green] & & \\
+			\phantom. & \textcolor{red}{C}  \ar[r,red,"f",tail]& \textcolor{red}{D}  \\
+			\textcolor{blue}{B}  \ar[ur,blue,"g_2"] \arrow[rru, bend right=30, "fg_2",green]& & 
+		\end{tikzcd}
+		\footnote{$(f g_1 = f g_2 ) \Rightarrow ( g_1 = g_2 )$}
+	\end{definition}
+	(Hom functor point of view:)
+	\begin{displaymath}
+		f \textrm{mono} \Leftrightarrow H^B(f) \textrm{injective} \quad \forall B \in \cat
+	\end{displaymath}
+	%
+	\begin{tikzpicture}[baseline= (a).base]
+	\node[scale=.75] (a) at (0,0){
+		\begin{tikzcd}
+			C \ar[d,"f"] & & \hom(B,C) \ar[d, "H^B(f) = f(-)"]\ar[r,phantom,"\in"] & g_1 \ar[d,mapsto]\ar[r,phantom,','] & g_2 \ar[d,mapsto] \\
+			D				 & & \hom(B,D) \ar[r,phantom,"\in"] & f g_1 \ar[r,phantom,"="] & f g_2 	
+		\end{tikzcd}
+	};
+	\end{tikzpicture}
+	%
+	\begin{example}
+	(Mono "generalize" (there are nuance of monomorphism) the concept of injective map)\\
+	Monomorphisms in $Set$ are injective functions. (It's straightforward from the definition via hom functors taking $B= {\ast}$)
+	\begin{tikzpicture}[baseline= (a).base]
+	\node[scale=.75] (a) at (0,0){
+		\begin{tikzcd}
+			\{\ast\} \ar[dd,equal] \ar[dr,"c_1"] & & \\
+			& C \ar[r,tail,"f"] & D \\
+			\{\ast\} \ar[ur,"c_2"]& &
+		\end{tikzcd}
+	};
+	\end{tikzpicture}
+	\\
+	Mono means:
+	\begin{displaymath}
+		f(c1) = f(c2) \Rightarrow c1=c2
+	\end{displaymath}
+	that is injectivity
+	\end{example}
+ 
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{definition}[Epimorphism (epi or epic arrow)]
+		\emph{"right cancellative arrow"}
+		$\textcolor{red}{\bulk} s.t. \textcolor{blue}{\forall \bulk} \quad \cotria \Rightarrow \cotrib$
+		
+		\begin{tikzcd}
+			& & \textcolor{blue}{E} \ar[dd,blue,equal] \\
+			\textcolor{red}{C} \ar[r,red,"f",twoheadrightarrow] \arrow[rru, bend left=30, "h_1 f",green] \arrow[rrd, bend right=30, "h_2 f",green]& \textcolor{red}{D} \ar[ur,blue,"h_1"] \ar[dr,blue,"h_2"] & \\
+			& & \textcolor{blue}{E}
+		\end{tikzcd}
+		\footnote{$(h_1 f = h_2 f ) \Rightarrow ( h_1 = h_2 )$}
+	\end{definition}
+
+	(Hom functor point of view:)
+	\begin{displaymath}
+		f \textrm{epi} \Leftrightarrow H_E(f) \textrm{injective} \quad \forall E \in \cat
+	\end{displaymath}	
+			\begin{tikzpicture}[baseline= (a).base]
+			\node[scale=.75] (a) at (0,0){
+				\begin{tikzcd}
+					C \ar[d,"f"] & & \hom(C,E) \ar[r,phantom,"\in"] & h_1 f \ar[r,phantom,"="] & h_2 f  \\
+					D				 & & \hom(D,E) \ar[u, "H_E(f) = (-)f"]  \ar[r,phantom,"\in"] & h_1 \ar[u,mapsto] \ar[r,phantom,','] & h_2 \ar[u,mapsto]	
+				\end{tikzcd}
+			};
+			\end{tikzpicture}
+	%
+	\begin{example}
+	(Epi "generalizes" (there are nuance of monomorphism) the concept of surjective map)\\
+	Epimorphisms in $Set$ are surjective functions. \\
+	Consider
+	\begin{tikzpicture}[baseline= (a).base]
+	\node[scale=.75] (a) at (0,0){
+		\begin{tikzcd}
+			& & \{0,1\} \ar[dd,equal]\\
+		X	\ar[r,"f",twoheadrightarrow]&Y \ar[ur,"\chi_{f(x)}"]\ar[dr,"1"] & \\
+			&	 & \{0,1\}
+		\end{tikzcd}
+	};
+	\end{tikzpicture}
+	\\
+	where $\chi_{f(x)}$ is the characteristic function on the range $f(X) \subset Y$ and $1$ is the constant function.\\
+	Epi means:
+	\begin{displaymath}
+		\chi_{f(x)} = 1 \Rightarrow \chi_{f(X)} = 1 \Rightarrow Y = f(X)
+	\end{displaymath}
+	that is surjectivity
+	\end{example}
+	
+\end{minipage}
+
+
+
+
+
+
+\end{document}

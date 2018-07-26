@@ -46,27 +46,6 @@
 	\end{tikzcd}
 \end{definition}
 %
-\begin{definition}[Iso-reflecting]
-	\parbox{0.35\textwidth}{
-		$$\forall \bulk  \textcolor{blue}{\Rightarrow \commute}$$
-	}
 
-	\begin{tikzcd}
-		A \arrow[d, "f ", bend right=60]  & & F(A) \arrow[d, "F(f) "', bend right=60] \arrow[drr, phantom,"\commute",blue] & & \\
-		B \arrow[u, "f^{-1}", bend right=60] & & F(B) \arrow[u, "F(f^{-1})"', bend right=60] \arrow[u, "F(f)^{-1}"', bend right=90, blue, looseness=5] & & \phantom{A}
-	\end{tikzcd}
-	\\ or \\
-	\begin{tikzcd}
-		A \arrow[d, "f "']   \arrow[dd, "id_A"', bend right=60]& & F(A) \arrow[d, "F(f) "'] \arrow[dd, "id_{F(A)} ", bend left=60]  & \\
-		B \arrow[d, "f^{-1}"'] & & F(B)  \arrow[d, "F(f^{-1}) "'] \arrow[r, phantom,"\commute",blue, near start]&\phantom{A}\\
-		A & & F(A) &
-	\end{tikzcd}
-	
-\end{definition}
-
-\begin{proposition}
-	Given F a functor
-	$$ \textrm{Fully Faithfull} \Leftrightarrow \textrm{Iso-reflecting}$$
-\end{proposition}
 
 \end{document}

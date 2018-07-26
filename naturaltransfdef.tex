@@ -15,16 +15,16 @@
 
 \begin{definition}[Natural transformation]
 	\begin{tikzcd}
-		\mu: F \xrightarrow[]{\cdot} G & = &
+		\eta: F \xrightarrow[]{\cdot} G & = &
 		\cat[C] \arrow[r, bend left=50, "F"{name=U, above}]
 		\arrow[r, bend right=50, "G"{name=D, below}]
 		& \cat[D]
-		\arrow[shorten <=1pt,shorten >=1pt,Rightarrow, from=U, to=D, "\mu"]
+		\arrow[shorten <=1pt,shorten >=1pt,Rightarrow, from=U, to=D, "\eta"]
 	\end{tikzcd}
 	\\
-	Is a collection of morphisms 
+	Is a collection of morphisms \footnote{Called "components" of $\eta$}
 	\begin{displaymath}
-		\left\lbrace \mu_X : F(X) \rightarrow G(X) \: \vert \: X \in \Obj(\cat) \right\rbrace \subset \Arr(\cat[D])
+		\left\lbrace \eta_X : F(X) \rightarrow G(X) \: \vert \: X \in \Obj(\cat) \right\rbrace \subset \Arr(\cat[D])
 	\end{displaymath} 
 	S.t. \\
 	$\forall \bulk  \textcolor{red}{\exists \bulk} \textcolor{blue}{\St \bulk}$\\
@@ -35,5 +35,9 @@
 	\end{tikzcd}
 	(naturality)
 \end{definition}
+
+\begin{notation}
+	$\eta$ is said \emph{Iso-natural transformation} if every component is invertible.
+\end{notation}
 
 \end{document}

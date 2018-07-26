@@ -1,0 +1,60 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+
+\documentclass[a4paper,12pt,fleqn]{scrartcl}  %Per La Stampa
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\usepackage{amsmath}
+
+\usepackage[subpreambles=true]{standalone}
+\usepackage{commath}
+
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{standalone}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+
+
+
+%Diagrammatic
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{fdsymbol}
+	% bulk of arrows and objects
+	\newcommand{\bulk}{\blacklozenge}
+	% such that
+	\newcommand{\St}{\textrm{s.t.}}
+	% id est
+	\newcommand{\ie}{\textrm{\emph{i.e.}}}
+	% commuting
+	\newcommand{\commute}{\circledequal}%\circlearrowleft
+
+
+
+\begin{document} 
+
+	\input{catdef} \newpage
+
+	\input{functordef}
+	\input{basicfunctorclassification}
+	\input{functorclassification_1}
+	\input{functorclassification_2}
+
+	\input{naturaltransfdef}
+	\input{naturaltransfdefcompositions}
+
+	\input{limitdef}
+	\input{limitbestiary}
+
+	\input{basicmorphismclassification}
+
+	\input{slicecatdef}
+	
+	
+
+\end{document}

@@ -11,84 +11,155 @@
 \usepackage{./visualcat}
 \usepackage{pdflscape}
 
+\def\shapeproduct{
+	\tikz[baseline=.1ex]{
+		\fill (0,1ex) circle [radius=2pt] coordinate (A);
+		\fill (2.5ex,1ex) circle [radius=2pt] coordinate (B);
+	}
+}
+\def\shapeequalizer{
+	\tikz[baseline=.1ex]{
+		\fill (0,1ex) circle [radius=2pt] coordinate (A);
+		\fill (3ex,1ex)circle [radius=2pt] coordinate (B);
+		\fill (0.4ex,1.5ex) coordinate (Aup);
+		\fill (0.4ex,0.5ex) coordinate (Adown);
+		\fill (2.6ex,1.5ex) coordinate (Bup);
+		\fill (2.6ex,0.5ex) coordinate (Bdown);
+		\draw[black,->] (Aup) -- (Bup);
+		\draw[black,->] (Adown) -- (Bdown);
+	}
+}
+\def\shapepullback{
+	\tikz[baseline=.1ex]{
+		\fill (0ex,-0.5ex) circle [radius=1.5pt] coordinate (A);
+		\fill (3ex,-0.5ex)circle [radius=1.5pt] coordinate (B);
+		\fill (3ex,2.5ex) circle [radius=1.5pt] coordinate (C);
+		\draw[black,->,shorten >=0.4ex,shorten <=0.4ex] (A) -- (B);
+		\draw[black,->,shorten >=0.4ex,shorten <=0.4ex] (C) -- (B);
+	}
+}
+\def\shapepushout{
+	\tikz[baseline=.1ex]{
+		\fill (0,0) circle [radius=1.5pt] coordinate (A);
+		\fill (0ex,3ex)circle [radius=1.5pt] coordinate (B);
+		\fill (3ex,3ex) circle [radius=1.5pt] coordinate (C);
+		\draw[black,->,shorten >=0.4ex,shorten <=0.4ex] (B) -- (A);
+		\draw[black,->,shorten >=0.4ex,shorten <=0.4ex] (B) -- (C);
+	}
+}
+
 
 
 \begin{document}
 %
 The best way to grasp the meaning (...) to understand what is a limit it is through examples. The model category is $\cat[Set]$ which turn out to be complete and co-complete.
 
+
+
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Terminal Object]
-	Is a limit on the empty diagram.\\
+	Is a limit on the empty diagram .\\
 	$\textcolor{red}{T\in \Obj(\cat)} \St 
 	 \textcolor{blue}{\forall X \in \Obj	(\cat)}
-	 \textcolor{green}{\exists! X\rightarrow T}$\\
+	 \textcolor{orange}{\exists! X\rightarrow T}$\\
+	 
 	\begin{tikzcd}
-		\textcolor{blue}{X} \ar[d,green] \\
+		\textcolor{blue}{X} \ar[d,orange,"\exists!"'] \\
 		\textcolor{red}{T} 
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Initial Object]
+	Is a colimit on the on the empty diagram .\\
+	$\textcolor{red}{I\in \Obj(\cat)} \St 
+	 \textcolor{blue}{\forall X \in \Obj	(\cat)}
+	 \textcolor{orange}{\exists! I\rightarrow X}$\\
+
+
 	\begin{tikzcd}
-		\textcolor{red}{I} \ar[d,green] \\
+		\textcolor{red}{I} \ar[d,orange,"\exists!"'] \\
 		\textcolor{blue}{X} 
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Product]
+	Is a limit on the shape \shapeproduct .\\
 	\begin{tikzcd}
-		&\textcolor{blue}{C} \ar[ddl, bend right, blue] \ar[ddr, bend left, blue] \ar[d,green] 
-		\ar[ddl,phantom,green, "\commute"] \ar[ddr,phantom,green, "\commute"]& \\
+		&\textcolor{blue}{C} \ar[ddl, bend right, blue] \ar[ddr, bend left, blue] \ar[d,orange,"\exists!"'] 
+		\ar[ddl,phantom,orange, "\commute"] \ar[ddr,phantom,orange, "\commute"]& \\
 		&\textcolor{red}{A \times B} \ar[dl,red] \ar[dr,red]& \\
 		A & & B \\
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Co-Product]
+	Is a colimit on the shape \shapeproduct .\\
 	\begin{tikzcd}
-		\textcolor{red} A \ar[dr,red] \ar[ddr, bend right, blue] & & \textcolor{red} B\ar[dl,red] \ar[ddl, bend left, blue]\\
-		&\textcolor{red}{A \times B}  \ar[d,green] & \\
-		&\textcolor{blue}{C} \ar[uul,phantom,green, "\commute"] \ar[uur,phantom,green, "\commute"]& 
+		 A \ar[dr,red] \ar[ddr, bend right, blue] & &  B\ar[dl,red] \ar[ddl, bend left, blue]\\
+		&\textcolor{red}{A \times B}  \ar[d,orange,"\exists!"'] & \\
+		&\textcolor{blue}{C} \ar[uul,phantom,orange, "\commute"] \ar[uur,phantom,orange, "\commute"]& 
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Equalizer]
+	Is a limit on the shape \shapeequalizer .\\
 	\begin{tikzcd}
-		 & & B \ar[dd,equal] \\
-		\textcolor{red} E \ar[r,red,"e"] \ar[rru,red, bend left] \ar[rrd,red, bend right] \ar[rrd,phantom,red, "\commute"] \ar[rru,phantom,red, "\commute"]& 
+		& & \phantom. & B \ar[dd,equal] \\
+		\textcolor{blue} C \ar[rrrd,blue, bend right,looseness=1]\ar[rrru,blue,bend left]\ar[r,orange,"\exists!"]\ar[drr,phantom,orange, "\commute"]\ar[urr,phantom,orange, "\commute"]
+		& \textcolor{red} E \ar[r,red,"e"] \ar[rru,red, bend left] \ar[rrd,red, bend right] \ar[rrd,phantom,red, "\commute"] \ar[rru,phantom,red, "\commute"] & 
 		A \ar[ur,"f"] \ar[dr,"g"'] \ar[r,phantom, "\commute"]& \phantom. \\
-		 & & B 
+		& \phantom. & \phantom. & B 
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Co-Equalizer]
+	Is a colimit on the shape \shapeequalizer .\\
 	\begin{tikzcd}
-		A   \ar[dd,equal] \ar[rd,"f"] \ar[rrd,red, bend left] \ar[rrd,phantom,red, "\commute"]& & \\
-		\phantom. \ar[r,phantom, "\commute"] & B \ar[r,red,"q"] & \textcolor{red} Q \\
-		B \ar[ru,"g"'] \ar[rru,red, bend right] \ar[rru,phantom,red, "\commute"]& & \\
+		A   \ar[dd,equal] \ar[rd,"f"] \ar[rrd,red, bend left] \ar[rrd,phantom,red, "\commute"]& \phantom. & &\\
+		\phantom. \ar[r,phantom, "\commute"] & B \ar[r,red,"q"] & \textcolor{red} Q & \textcolor{blue}C 
+		\ar[llld,blue, bend left,looseness=1,leftarrow]\ar[lllu,blue,bend right,leftarrow]\ar[l,orange,"\exists!"',leftarrow]\ar[ull,phantom,orange, "\commute"]\ar[dll,phantom,orange, "\commute"]		
+		\\
+		B \ar[ru,"g"'] \ar[rru,red, bend right] \ar[rru,phantom,red, "\commute"]& \phantom. & & \\
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Pull-Back]
+	Is a limit on the shape \shapepullback .\\
 	\begin{tikzcd}
-		\textcolor{green} U \ar[rd,orange,"!"]  \ar[rdd,green,bend right] \ar[rrd,green,bend left]& & \\
+		\textcolor{blue} C \ar[rd,orange,"\exists!"]\ar[rdd,phantom,orange, "\commute"]\ar[rrd,phantom,orange, "\commute"]   \ar[rdd,blue,bend right] \ar[rrd,blue,bend left]& & \\
 		& \textcolor{red} S \ar[rd,red,phantom,"\commute"] \ar[r,red] \ar[d,red]  \arrow[dr, phantom, "\ulcorner", very near start]
 & A \ar[d] \\
 		& B \ar[r] & C
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{definition}[Push-Out]
+	Is a colimit on the shape \shapepushout .\\
 	\begin{tikzcd}
-		C \ar[r] \ar[d] \ar[rd,red,phantom,"\commute"]& A \ar[d,red] \ar[rdd,green,bend left]& \\
-		B  \ar[r,red] \ar[rrd,green,bend right] & \textcolor{red}O \arrow[ul, phantom, "\ulcorner", very near start] \ar[rd,orange,"!"] & \\
-		& & \textcolor{green} U		
+		C \ar[r] \ar[d] \ar[rd,red,phantom,"\commute"]& A \ar[d,red] \ar[rdd,blue,bend left]& \\
+		B  \ar[r,red] \ar[rrd,blue,bend right] & \textcolor{red}O \arrow[ul, phantom, "\ulcorner", very near start] \ar[rd,orange,"\exists!"] & \\
+		& & \textcolor{blue} U	\ar[llu,phantom,orange, "\commute"]\ar[luu,phantom,orange, "\commute"]	
 	%	 U   \ar[rdd,green,bend right] \ar[rrd,green,bend left]& & \\
 	%	& } S  \arrow[dr, phantom, "\ulcorner", very near start] & A \ar[d] \\
 	%	& B \ar[r] & C
 	\end{tikzcd}
 \end{definition}
-%
+\end{minipage}
+
 So, a limit is a concept pertaing to a specific configuration of objects and arrows (the image of the diagram $D$ in $\cat$).
 \\
 We reserve a special name for categories such that limit exists for all diagram of a certain shape regardless of the specificity of vertex and arrows (i.e. depending only on the shape of the diagrams).

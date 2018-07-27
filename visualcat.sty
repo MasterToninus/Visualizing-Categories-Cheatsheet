@@ -20,7 +20,7 @@
 %Diagrammatic
 	\RequirePackage{tikz-cd}
 	\RequirePackage{xcolor}
-	\RequirePackage{fdsymbol}
+	%\RequirePackage{fdsymbol} \circledequal.. errors in windows10
 	% bulk of arrows and objects
 	\providecommand{\bulk}{\blacklozenge}
 	% such that
@@ -28,7 +28,11 @@
 	% id est
 	\providecommand{\ie}{\textrm{\emph{i.e.}}}
 	% commuting
-	\providecommand{\commute}{\circledequal}%\circlearrowleft
+	\providecommand{\commute}{\circlearrowleft}%\circledequal
+
+
+
+
 
 	\providecommand{\smalltikzcd}[2]{
 		\begin{tikzpicture}[baseline= (a).base]

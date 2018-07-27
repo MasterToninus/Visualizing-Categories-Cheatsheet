@@ -3,8 +3,11 @@ wip
 
 git clone con tutti i submoduli!
 
+## TODO Forma
+- [ ] File "dispensa" contiene tutti i blocchi organizzati in sezioni e sottosezioni
+- [ ] File Poster. Organizza tutti i blocchi in poster. WARN: c'è incompatibilità tra beamer e standalone in windows 10
 
-## TODO
+## TODO Contenuto
 - [x] Definizione base
 - [x] Funtori
   - functordef

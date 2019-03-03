@@ -1,0 +1,51 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+\usepackage{pdflscape}
+
+
+
+
+
+\begin{document}
+%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{definition}[Kan extension]
+We call \emph{Kan extension} of a functor $F:\mathcal{C}\rightarrow\mathcal{D}$ along the functor $L:\mathcal{C} \rightarrow \mathcal{C}'$, 
+	the functor $Lan(F):\mathcal{C}'\rightarrow \mathcal{D}$
+	together with the nat.t. $\eta_F: F \Rightarrow F\circ L$ such that:\\
+	The following commutes
+	\begin{tikzcd}
+		\mathcal{C}\ar[rr,"F"] \ar[dr,"L"'] & & \mathcal{D}
+		\\ 
+		& \mathcal{C}' \ar[ur,"Lan(F)"'] &
+	\end{tikzcd}
+
+	\href{https://ncatlab.org/nlab/show/Kan+extension#OrdinaryKanExtensions}{Todo}
+\end{definition}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{definition}[Right Kan extension]
+We call \emph{Right Kan extension} of a functor $F:\mathcal{C}\rightarrow\mathcal{D}$ along the functor $R:\mathcal{D} \rightarrow \mathcal{D}'$, 
+	the functor $Ran(F):\mathcal{C}'\rightarrow \mathcal{D}$
+	together with the nat.t. $\eta_F: F \Rightarrow F\circ L$ such that:\\
+	The following commutes
+	\begin{tikzcd}
+		\mathcal{C}\ar[rr,"F"] \ar[dr,"L"'] & & \mathcal{D}
+		\\ 
+		& \mathcal{C}' \ar[ur,"Lan(F)"'] &
+	\end{tikzcd}
+	\href{https://ncatlab.org/nlab/show/Kan+extension#OrdinaryKanExtensions}{Todo}
+\end{definition}
+\end{minipage}
+
+\end{document}

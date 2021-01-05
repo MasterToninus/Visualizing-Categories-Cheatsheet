@@ -1,0 +1,46 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+\usepackage{pdflscape}
+
+
+
+
+\begin{document}
+%
+The best way to understand what is a limiti is through examples on a "model" categoty. The prototypical complete and co-complete category is $\cat[Set]$
+
+
+\begin{minipage}[t]{0.5\textwidth}
+\begin{example}[]
+	Set has terminal object:
+	
+\end{example}
+\end{minipage}
+\vrule{}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{example}[Initial Object]
+	Is a colimit on the on the empty diagram .\\
+	$\textcolor{red}{I\in \Obj(\cat)} \St 
+	 \textcolor{blue}{\forall X \in \Obj	(\cat)}
+	 \textcolor{orange}{\exists! I\rightarrow X}$\\
+
+
+	\begin{tikzcd}
+		\textcolor{red}{I} \ar[d,orange,"\exists!"'] \\
+		\textcolor{blue}{X} 
+	\end{tikzcd}
+\end{example}
+\end{minipage}
+
+
+
+\end{document}

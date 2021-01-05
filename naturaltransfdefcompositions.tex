@@ -14,10 +14,11 @@
 \begin{document} 
 \begin{definition}[Vertical composition]
 	\begin{tikzcd}
+		\beta \circ \alpha: F \xrightarrow[]{\cdot} H & = &
 		\cat[C] 
 			\arrow[rrr, bend left=60, "F"] 
 			\arrow[rrr, phantom, bend left=60, ""{name=U}] 
-			\arrow[rrr, bend right=60, "H"]
+			\arrow[rrr, bend right=60, "H"']
 			\arrow[rrr, phantom, bend right=60, ""'{name=D,below}]		
 		 	\arrow[rrr, "G"]
 			\arrow[rrr, ""{name=C}]		 	
@@ -35,6 +36,7 @@
 
 \begin{definition}[Horizontal composition]
 	\begin{tikzcd}
+		\beta \ast \alpha: F' F \xrightarrow[]{\cdot} G' G & = &	
 		\cat[C] 
 			\arrow[rr, bend left=30, "F"{name=U1}] 
 			\arrow[rr, bend right=30, "G"'{name=D1}]
@@ -49,10 +51,13 @@
 		\arrow[Rightarrow,red,"\beta \ast \alpha"'{above left}, from=U, to=D,shift left=3ex]
 	\end{tikzcd}
 	
+	$\St$ $(\beta\ast \alpha)_x = G' \alpha_x \cdot \beta_{F(x)} = \beta_{G(x)} \cdot F' \alpha_x$
+
 	\begin{tikzcd}[row sep=scriptsize, column sep=scriptsize]
-		x \ar[dd,"s"] & & F(x) \ar[rr,"\alpha_x"] \ar[dd,"F(s)"] \ar[ddrr,phantom,"\commute"]& & G(x) \ar[dd,"G(s)"] \\
-		& & & & \\
-		y & & F(y) \ar[rr,"\alpha_y"] & & G(y) 
+		x \ar[dd,"s"] & & F(x) \ar[rr,"\alpha_x"] \ar[dd,"F(s)"] \ar[ddrr,phantom,"\commute"]& & G(x) \ar[dd,"G(s)"] & & F'F(x)\ar[dd," "] \ar[rr,"F'\alpha_x "] \ar[drrr,"(\beta \ast \alpha)_x",red] \ar[dr,"\beta_{F(x)} "] & & F'G(x)\ar[dd," "]\ar[dr,"\beta_{G(x)} "]\\
+		& & & & & & & G'F(x) \ar[dd," "] \ar[rr,"G'\alpha_x "] & & G'G(x)\ar[dd," "] \\
+		y & & F(y) \ar[rr,"\alpha_y"] & & G(y) & & F'F(y) \ar[rr,"F'\alpha_y "]\ar[dr,"\beta_{F(y)}"]\ar[drrr,"(\beta \ast \alpha)_y",red] & & F'G(y)\ar[dr,"\beta_{G(y)}"] \\
+		& & & & & & & G'F(y) \ar[rr,"G'\beta_y "] & & G'G(y)  		
 	\end{tikzcd}
 
 \end{definition}

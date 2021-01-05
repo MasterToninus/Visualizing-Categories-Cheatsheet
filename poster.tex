@@ -1,0 +1,45 @@
+%% A tentative, eye-catchy, one-page definition of category (I would like to replicate the page frome my handwritten notes.
+
+\documentclass[notheorems, 8pt]{beamer}
+
+\usepackage[orientation=landscape, size=a0, scale=1]{beamerposter}
+\usepackage[mode=buildnew,sort=true]{standalone}
+\usepackage{standalone}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+\usepackage{./visualcat}
+
+
+\begin{document} 
+\begin{frame}
+\frametitle{explanation}
+\begin{columns}
+
+\begin{column}{0.2\textwidth}
+	\input{catdef}
+\end{column}
+\begin{column}{0.2\textwidth}
+	\input{functordef}
+	\input{basicfunctorclassification}
+	\input{functorclassification_1}
+	\input{functorclassification_2}
+\end{column}
+\begin{column}{0.2\textwidth}
+	\input{naturaltransfdef}
+	\input{naturaltransfdefcompositions}
+\end{column}
+\begin{column}{0.2\textwidth}
+	\input{limitdef}
+	\input{limitbestiary}
+\end{column}
+\begin{column}{0.2\textwidth}
+	\input{basicmorphismclassification}
+\end{column}
+\end{columns}
+\end{frame}
+\end{document}

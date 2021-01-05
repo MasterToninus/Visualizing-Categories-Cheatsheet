@@ -65,11 +65,12 @@ Let's begin from the dry abstract nonsense:
 \begin{definition}[Diagram on $\cat$]
 	Functor $D: \cat[I] \rightarrow \cat$ from a small category $\cat[I]$ to $\cat[C]$.
 \end{definition}
-Basically it is  a graph composed of objects and arrows in $\cat$.
+Basically it is  a graph composed of objects and arrows in $\cat$. We call \emph{shape of $D$} the corresponding diagram.
 
 % first column
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{definition}[Cone over diagram $D$]
+	
 		\begin{displaymath}
 		 (
 		 \tikz[baseline]{
@@ -85,9 +86,9 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 		\end{displaymath}
 		\tikzstyle{na} = [baseline=-.5ex]
 		\begin{itemize}
-		    \item \tikz[na] \node[coordinate] (n1) {};
+		    \item[] \tikz[na] \node[coordinate] (n1) {};
 		    	Object $\in \cat$
-		    \item Family of morphisms of $\cat$
+		    \item[] Family of morphisms of $\cat$
 		        \tikz[na]\node [coordinate] (n2) {};
 		\end{itemize}
 		% Now it's time to draw some edges between the global nodes. Note that we have to apply the 'overlay' style.
@@ -98,21 +99,27 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 		\end{tikzpicture}
 		\St
 		
-		$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$
-		\begin{tikzcd}
+		\parbox{0.4\textwidth}{
+			$$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$$
+		}
+		\begin{tikzcd}[sep=small]
 			& \textcolor{red}{V} \ar[dl,red,"\nu_i"'] \ar[d,phantom,blue,"\commute"] \ar[dr,red,"\nu_j"]& \\
 			D_i \ar[rr,"D(f)"']& \phantom. & D_j 
-		\end{tikzcd}
-		I.e. it is a n.t. $ \nu : \Delta_V \xrightarrow{\cdot} \cat[D]$
+		\end{tikzcd} 
+	\end{definition}
+	\begin{lemma}
+		Any cone is a n.t. $ \nu : \Delta_V \xrightarrow{\cdot} \cat[D]$
 		\begin{tikzcd}
 			i \ar[d,"f"] & & \textcolor{red}{V} \ar[d,equal,red] \ar[r,red,"\nu_i"] \ar[dr,phantom,blue,"\commute"]& D_i \ar[d,"D(f)"]\\
 			j			   & & \textcolor{red}{V} \ar[r,red,"\nu_j"'] & D_j
-		\end{tikzcd}
-	\end{definition}
+		\end{tikzcd}	
+	\end{lemma}
+	
 \end{minipage}
 \vrule{}
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{definition}[CoCone over diagram $D$]
+	
 		\begin{displaymath}
 		 (
 		 \tikz[baseline]{
@@ -128,9 +135,9 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 		\end{displaymath}
 		\tikzstyle{na} = [baseline=-.5ex]
 		\begin{itemize}
-		    \item \tikz[na] \node[coordinate] (n1) {};
+		    \item[] \tikz[na] \node[coordinate] (n1) {};
 		    	Object $\in \cat$
-		    \item Family of morphisms of $\cat$
+		    \item[] Family of morphisms of $\cat$
 		        \tikz[na]\node [coordinate] (n2) {};
 		\end{itemize}
 		\begin{tikzpicture}[overlay]
@@ -140,17 +147,24 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 		\end{tikzpicture}
 		\St
 		
-		$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$
-		\begin{tikzcd}
+		\parbox{0.4\textwidth}{
+		 $$\forall \left( i \xrightarrow[]{f} j \right) \in \cat[I]$$
+		}
+		\begin{tikzcd}[sep=small]
 			D_i \ar[rr,"D(f)"] \ar[dr,red,"\omega_i"']& \phantom. & D_j \ar[dl,red,"\omega_j"]\\
 			& \textcolor{red}{W}  \ar[u,phantom,blue,"\commute"] & 
 		\end{tikzcd}
-		I.e. it is a n.t. $ \omega : \cat[D] \xrightarrow{\cdot} \Delta_W$
+
+	\end{definition}
+	\begin{lemma}
+		Any co-cone is a n.t. $ \omega : \cat[D] \xrightarrow{\cdot} \Delta_W$
 		\begin{tikzcd}
 			i \ar[d,"f"] & & D_i \ar[d,"D(f)"'] \ar[r,red,"\omega_i"] \ar[dr,phantom,blue,"\commute"]& \textcolor{red}{W}\ar[d,equal,red] \\
 			j			   & & D_j \ar[r,red,"\omega_j"'] & \textcolor{red}{W}
 		\end{tikzcd}
-	\end{definition}
+	
+	\end{lemma}
+
 \end{minipage}
 	\begin{center}
 		\begin{tikzcd}[row sep= 5pt]%small]
@@ -159,7 +173,7 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 			& &		   & D_3  & \\
 			& D_1 \ar[r] & D_2 \ar[ru] \ar[rd]& \phantom. & \textrm{\small diagram}\\ 
 			& &		   & D_4 \\
-			& &   \textcolor{red}{W} \ar[uul, red, bend left]\ar[uu, red] \ar[ur, red, bend right] \ar[uuur, red, bend right]  &   &
+			& &   \textcolor{red}{W} \ar[uul, red, bend left,leftarrow]\ar[uu, red,leftarrow] \ar[ur, red, bend right,leftarrow] \ar[uuur, red, bend right,leftarrow]  &   &
 				\textcolor{red}{\textrm{\small co-cone}}    
 		\end{tikzcd}
 	\end{center}
@@ -167,7 +181,7 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 % first column
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{definition}[Limit of diagram $D$]
-		It is an Universal cone over $D$.
+		\emph{Universal cone over $D$}
 		$$\textcolor{red}{cone \bulk} s.t. \textcolor{blue}{\forall cone \bulk} \quad \textcolor{orange}{\exists! \bulk} \St \TriLimit$$	
 		\begin{tikzcd}[row sep= small]
 		i \ar[dd,"f"] & & D_i  \ar[dd,"D(f)"']& \\
@@ -181,7 +195,7 @@ Basically it is  a graph composed of objects and arrows in $\cat$.
 \vrule{}
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{definition}[Co-Limit of diagram $D$]
-		It is an Universal co-cone over $D$.
+		\emph{Universal co-cone over $D$}
 		$$\textcolor{red}{cocone \bulk} s.t. \textcolor{blue}{\forall cone \bulk} \quad \textcolor{orange}{\exists! \bulk} \St \TriLimit$$	
 		\begin{tikzcd}[row sep= small]
 		i \ar[dd,"f"] & & D_i \ar[rd,red] \ar[rddd,blue] \ar[dd,"D(f)"']& \\

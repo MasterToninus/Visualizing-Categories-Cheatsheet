@@ -1,0 +1,103 @@
+
+
+\documentclass[a4paper,12pt,fleqn]{scrartcl}  %Per La Stampa
+\usepackage[a4paper, margin=0.5cm]{geometry}
+
+\usepackage{amsmath}
+
+\usepackage[subpreambles=true]{standalone}
+\usepackage{commath}
+
+\usepackage[italian,english]{babel}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage[basic,cat]{./Math-Symbols-List/toninus-math-symbols}
+\usepackage{./Latex-Theorem/theoremtemplate}
+
+
+
+%Diagrammatic
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{fdsymbol}
+	% bulk of arrows and objects
+	\newcommand{\bulk}{\blacklozenge}
+	% such that
+	\newcommand{\St}{\textrm{s.t.}}
+	% id est
+	\newcommand{\ie}{\textrm{\emph{i.e.}}}
+	% commuting
+	\newcommand{\commute}{\circledequal}%\circlearrowleft
+
+
+
+\begin{document} 
+
+\begin{abstract}
+	Lista di definizioni basilari dal punto del visto del nonsense.
+	Ricordare che la chiave per capirle è sempre "in context"! (cioè come spiega Mantovani e Atrish).
+	Dovrebbe essere una specie di sintesi di un corso basico di Categorie.
+\end{abstract}
+
+%------------------------------------------------------------------------------------------------
+% Basic Ingredients
+% Categories, Functors and Natural Transformations
+%------------------------------------------------------------------------------------------------
+\section{Basics}
+	\subsection{Categories}
+	\input{catdef} 
+
+	\newpage	
+	\subsection{Functors}
+	\input{functordef}
+	\input{basicfunctorclassification}
+	\input{functorclassification_1}
+	\input{functorclassification_2}
+
+	\newpage
+	\subsection{Natural Transformations}
+	\input{naturaltransfdef}
+	\input{naturaltransfdefcompositions}
+
+%------------------------------------------------------------------------------------------------
+% Limits
+% 
+%------------------------------------------------------------------------------------------------
+\newpage
+\section{Limits}
+	\input{limitdef}
+	\input{limitbestiary}
+
+%------------------------------------------------------------------------------------------------
+% Classification of morphisms
+% 
+%------------------------------------------------------------------------------------------------
+\newpage
+\section{Shades of morphisms}
+	\input{basicmorphismclassification}
+
+%------------------------------------------------------------------------------------------------
+% Misc
+% 
+%------------------------------------------------------------------------------------------------
+\newpage
+\section{Misc}
+	\input{slicecatdef}
+	\input{kan-extension}
+
+%------------------------------------------------------------------------------------------------
+% Bibliography (BibTex)
+% https://arxiv.org/hypertex/bibstyles/
+%------------------------------------------------------------------------------------------------
+			\newpage
+			\cite{*}
+			\bibliographystyle{alpha}
+			\bibliography{BasicCat-biblio}
+%------------------------------------------------------------------------------------------------	
+	
+
+\end{document}

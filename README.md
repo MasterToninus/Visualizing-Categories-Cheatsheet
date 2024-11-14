@@ -35,11 +35,10 @@ Feel free to contribute to this project! Here are some ways you can help:
 4. Commit and push.
 5. Submit a pull request.
 
-I'm open to any suggestion!
+I'm open to any suggestions!
 
 **License:**
-
-[Insert your chosen license here, e.g., MIT License]
+GNU LESSER GENERAL PUBLIC LICENSE
 
 **Acknowledgements:**
 
